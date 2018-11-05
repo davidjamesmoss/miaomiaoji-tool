@@ -10,7 +10,7 @@ from const import BtCommandByte
 class BtManager:
     standardKey = 0x35769521
     padding_line = 300
-    max_send_msg_length = 2016
+    max_send_msg_length = 1536
     max_recv_msg_length = 1024
     uuid = "00001101-0000-1000-8000-00805F9B34FB"
 

@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*-coding:utf-8-*-
 
-from PIL import Image, ImageDraw, ImageFont
-import PIL.ImageOps
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 class ImageConverter:
@@ -10,7 +9,7 @@ class ImageConverter:
     def image2bmp(path):
         img = Image.open(path)
         img.thumbnail((384, 9999), Image.ANTIALIAS)  # Reduce to fit and maintain aspect ratio.
-        img = PIL.ImageOps.invert(img)  # Invert image for printing
+        img = ImageOps.invert(img)  # Invert image for printing
         img = img.convert('1')  # Convert to 1-bit with dither
         return img.tobytes()
 

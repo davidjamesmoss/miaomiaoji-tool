@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*-coding:utf-8-*-
-__author__ = "ihciah"
-
-import struct, zlib, logging
+import struct
+import zlib
+import logging
 from bluetooth import BluetoothSocket, find_service, RFCOMM, discover_devices
 from const import BtCommandByte
+
+__author__ = "ihciah"
 
 
 class BtManager:
@@ -88,7 +90,6 @@ class BtManager:
         result += struct.pack('<B', 3)
         return result
 
-
     def addBytesToList(self, bytes):
         length = self.max_send_msg_length
         result = [bytes[i:i+length] for i in range(0, len(bytes), length)]
@@ -117,8 +118,8 @@ class BtManager:
             class Info(object):
                 def __str__(self):
                     return "\nControl command: %s(%s)\nPayload length: %d\nPayload(hex): %s" % (
-                        self.command, BtCommandByte.findCommand(self.command)
-                        , self.payload_length, self.payload.encode('hex')
+                        self.command, BtCommandByte.findCommand(self.command),
+                        self.payload_length, self.payload.encode('hex')
                     )
             info = Info()
             _, info.command, _, info.payload_length = struct.unpack('<BBBH', data[base:base+5])
